@@ -1,12 +1,13 @@
-import styled from 'styled-components'
 
 const Banner = () => {
     return (
-        <div className="h-[400px] sm:h-[400px] lg:h-[500px] xl:h-[600px] 2xl:[700px]">
-            <Video src="hero.mp4" autoPlay loop muted type="video/mp4" preload="true" />
-            <div className="absolute top-[350px] md:top-[450px] w-full text-center">
-                <p className="text-2xl font-bold text-white">Not sure where to go? Perfect.</p>
-                <button className="text-purple-500 bg-white px-10 py-4 rounded-full shadow-md font-bold my-3 hover:shadow-xl active:scale-90 transition duration-150" >I'm flexible</button>
+        <div className="relative h-[300px] sm:h-[400px] lg:h-[500px] xl:h-[600px] 2xl:[700px]">
+      
+            <video src="hero.mp4" autoPlay loop muted type="video/mp4" preload="true" className="opacity-98 h-full w-full object-fill" />
+  
+            <div className="absolute top-[150px] md:top-[2200px] lg:top-[310px] w-full text-center">
+                <p className="text-xl font-medium md:text-2xl lg:text-4xl md:font-bold text-white">Not sure how to take your buisness online?</p>
+                <button className="text-purple-500 bg-white px-10 py-4 rounded-full shadow-md font-bold my-3 md:my-5 hover:shadow-xl active:scale-90 transition duration-150" >Let's Get Started</button>
             </div>
         </div>
     )
@@ -14,9 +15,3 @@ const Banner = () => {
 
 export default Banner
 
-const Video = styled.video`
-    height: 100%;
-    width: 100%;
-    -o-object-fit: cover;
-    object-fit: cover;
-`;
