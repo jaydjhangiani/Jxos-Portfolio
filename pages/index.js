@@ -68,7 +68,7 @@ export async function getStaticProps() {
     .get()
     .then(function (querySnapshot) {
       querySnapshot.forEach(function (doc) {
-        console.log(doc.data().title)
+  
         serviceData.push({
           img: doc.data().img,
           title: doc.data().title,
