@@ -46,7 +46,6 @@ export default function Home({exploreData, serviceData}) {
       </section> */}
 
       <LargeCard 
-        
         img={large}
         title="Get Inspired"
         description="We would love to help you and your buisness grow"
