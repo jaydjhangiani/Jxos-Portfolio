@@ -2,7 +2,7 @@ import Image from 'next/image'
 
 const LargeCard = ({img, title, description, buttonText}) => {
     return (
-        <section id="large" className="relative py-10 cursor-pointer border border-grey bg-color-whitsemoke rounded-xl shadow-xl my-10">
+        <section id="large" className=" noSelect relative py-10 cursor-pointer border border-grey bg-color-whitsemoke rounded-xl shadow-xl my-10">
             <div className="relative h-[400px]  min-w-[300px]">
                 <Image src={img} layout="fill" objectFit="cover" className="rounded-2xl"/>
             </div>
