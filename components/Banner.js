@@ -1,9 +1,10 @@
-
+import Image from 'next/image'
+import Hero from '../assets/img/hero.jpg'
 const Banner = () => {
     return (
         <div className="relative h-[300px] sm:h-[400px] lg:h-[500px] xl:h-[600px] 2xl:[700px]">
               
-            <video src="hero.mp4" type="video.mp4" autoPlay loop muted playsinline className="opacity-98 h-full w-full object-fill "/>
+            <Image src= {Hero} objectFit="cover" layout="fill"/>
     
   
             <div className="absolute top-[150px] md:top-[2200px] lg:top-[310px] w-full text-center">

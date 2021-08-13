@@ -9,7 +9,7 @@ const LargeCard = ({img, title, description, buttonText}) => {
             <div className="absolute top-[280px]  left-2 w-[290px]  bg-black p-5 rounded-xl">
                 <h3 className="text-4xl mb-3 w-58 text-white">{title}</h3>
                 <p className="text-white">{description}</p>
-                <button className="text-sm text-white bg-gray-900 px-4 py-1 rounded-lg mt-5">{buttonText}</button>
+                <button className="text-sm text-white bg-gray-900 px-4 py-1 rounded-lg mt-5 hover:bg-white hover:text-black active:scale-90 transition duration-150">{buttonText}</button>
             </div>
         </section>
     )
