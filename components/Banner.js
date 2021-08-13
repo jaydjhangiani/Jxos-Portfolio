@@ -2,8 +2,10 @@
 const Banner = () => {
     return (
         <div className="relative h-[300px] sm:h-[400px] lg:h-[500px] xl:h-[600px] 2xl:[700px]">
-      
-            <video src="hero.mp4" autoPlay loop muted type="video/mp4" preload="true" playsinline className="opacity-98 h-full w-full object-fill" />
+              
+            <video autoPlay loop muted preload="true" playsinline className="opacity-98 h-full w-full object-fill">
+                <soruce src="hero.mp4" type="video/mp4" />
+               </video>
   
             <div className="absolute top-[150px] md:top-[2200px] lg:top-[310px] w-full text-center">
                 <p className="text-xl font-medium md:text-2xl lg:text-4xl md:font-bold text-white">Not sure how to take your buisness online?</p>
