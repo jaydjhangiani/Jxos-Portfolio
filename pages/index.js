@@ -27,10 +27,12 @@ export default function Home({exploreData, serviceData}) {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 ">
         {/* pull data from a server  - API endpoints */}
         {serviceData?.map((item, index) => (
-          <ServiceCard key={index} img={item.img} title={item.title} desc={item.desc} />
+          <ServiceCard key={index} img={item.img} title={item.service} desc={item.desc} />
         ))}
         </div>
       </section>
+
+      {console.log(serviceData)}
 
       {/* <section>
       <h2 className = "text-4xl font-semibold py-8">About Us</h2>
@@ -60,30 +62,16 @@ export default function Home({exploreData, serviceData}) {
 
 export async function getStaticProps() {
  
-  let serviceData = []
-  firebase
-    .firestore()
-    .collection('services')
-    .get()
-    .then(function (querySnapshot) {
-      querySnapshot.forEach(function (doc) {
-  
-        serviceData.push({
-          img: doc.data().img,
-          title: doc.data().title,
-          desc: doc.data().desc
-        })
-      })
-    })
-    .catch(function (error) {
-      console.log('Error getting documents: ', error)
-    })
-
 
   const exploreData = await fetch('https://links.papareact.com/pyp').
   then(
     (res) => res.json()
   );
+
+  const serviceData = await fetch('https://jsonkeeper.com/b/XKE3').
+  then(
+    (res)=> res.json()
+  )
 
   return{
     props: {
