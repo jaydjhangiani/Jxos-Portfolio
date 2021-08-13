@@ -6,7 +6,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "@headlessui/react": "^1.4.0",
+    "@babel/core": "^7.15.0",
     "@heroicons/react": "^1.0.3",
     "firebase": "^8.9.1",
     "next": "latest",
