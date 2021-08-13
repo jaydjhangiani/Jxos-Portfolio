@@ -3,7 +3,8 @@ import Logo from '../assets/img/JXOS.jpg'
 import { Link } from "react-scroll";
 import {  MenuIcon } from "@heroicons/react/solid";
 import { useRouter } from "next/dist/client/router";
-const  Header = () => {
+
+const  Header = ({toggle}) => {
   const router = useRouter()
   return (
     <header className="sticky top-0 z-50 grid grid-cols-2 bg-white shadow-md p-5 md:px-10 ">
@@ -27,7 +28,7 @@ const  Header = () => {
             <Link to="large" className="cursor-pointer text-xl font-medium"  smooth={true} duration={500} spy={true} exact='true'>Contact</Link>
           </div>
           <div className="-my-5 md:hidden ml-[80px] ">
-                <MenuIcon className="h-8 text-black" />
+                <MenuIcon className="h-8 text-black" onClick={toggle} />
           </div>
       </div>
 

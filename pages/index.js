@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import { useState } from 'react';
 import Banner from '../components/Banner'
 import Footer from '../components/Footer';
 import Header from '../components/Header'
@@ -7,9 +8,16 @@ import MediumCard from '../components/MediumCard';
 import ServiceCard from '../components/ServiceCard';
 import firebase from 'firebase';
 import large from '../assets/img/large1.webp'
+import MobileDrawer from '../components/MobileDrawer';
 
 export default function Home({exploreData, serviceData}) {
-  console.log(serviceData)
+  
+  const [isOpen,setIsOpen] = useState(false);
+
+  const toggle = () => {
+      setIsOpen(!isOpen)
+  }
+
   return (
     <div className="">
       <Head>
@@ -17,7 +25,8 @@ export default function Home({exploreData, serviceData}) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
  
-    <Header/>
+    <Header toggle={toggle}/>
+    <MobileDrawer toggle={toggle} isOpen={isOpen} />
     <Banner/>
 
     <main className="max-w-7xl mx-auto px-8 sm:px-16">
@@ -32,7 +41,7 @@ export default function Home({exploreData, serviceData}) {
         </div>
       </section>
 
-      {console.log(serviceData)}
+
 
       {/* <section>
       <h2 className = "text-4xl font-semibold py-8">About Us</h2>
@@ -68,7 +77,7 @@ export async function getStaticProps() {
     (res) => res.json()
   );
 
-  const serviceData = await fetch('https://jsonkeeper.com/b/XKE3').
+  const serviceData = await fetch('https://jsonkeeper.com/b/4G7T').
   then(
     (res)=> res.json()
   )
