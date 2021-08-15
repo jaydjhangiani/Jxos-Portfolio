@@ -22,16 +22,27 @@ export default function Home({exploreData, serviceData}) {
     <div className="">
       <Head>
         <title>JXOS</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/jxos.jpg" />
       </Head>
  
-    <Header toggle={toggle}/>
+    <Header toggle={toggle} isOpen={isOpen} />
     <MobileDrawer toggle={toggle} isOpen={isOpen} />
     <Banner/>
 
     <main className="max-w-7xl mx-auto px-8 sm:px-16">
 
-      <section className="pt-6">
+      {/* about us */}
+      <section className="pt-10"id="about">
+        <h2 className="text-4xl font-semibold text-center pb-5">About Us </h2>
+        <div className="mt-5">
+          <p className="text-justify text-lg font-normal lg:text-xl">
+          JXOS is a Mumbai - based Digital Marketing Start-Up set up in June 2019 by <a href="https://www.linkedin.com/in/jaydjhangiani" className="font-bold">Jay Jhangiani</a> and <a href="https://www.linkedin.com/in/shravan-ahuja-bb0818161/" className="font-bold">Shravan Ahuja</a>. We offer an impressive professional consulting services and websites that are completely customization and pocket-friendly for your business or blog. Whatever your needs may be, we can make it happen. Get in touch with us today.
+          </p>       
+        </div>
+      </section>
+
+      {/* services */}
+      <section className="pt-10"id="services">
         <h2 className="text-4xl font-semibold pb-5">Services We Offer</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 ">
         {/* pull data from a server  - API endpoints */}
@@ -72,10 +83,6 @@ export default function Home({exploreData, serviceData}) {
 export async function getStaticProps() {
  
 
-  const exploreData = await fetch('https://links.papareact.com/pyp').
-  then(
-    (res) => res.json()
-  );
 
   const serviceData = await fetch('https://jsonkeeper.com/b/4G7T').
   then(
@@ -84,7 +91,6 @@ export async function getStaticProps() {
 
   return{
     props: {
-      exploreData,
       serviceData
     }
   }

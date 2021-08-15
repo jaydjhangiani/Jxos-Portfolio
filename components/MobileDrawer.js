@@ -17,7 +17,8 @@ const MobileDrawer = ({toggle, isOpen}) => {
             </SidebarMenu>
 
             <SocialMenu>
-                <h5 className="text-xl font-semibold" >Reach out to us on social media</h5>
+                <h5 className="text-xl font-medium
+                " >Reach out to us on social media</h5>
                 <div className="flex space-x-5 mt-3">
                     <a href="https://www.instagram.com/jxostech/" target="#">
                     <FaInstagram className="text-2xl" />
