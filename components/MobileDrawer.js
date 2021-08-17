@@ -1,19 +1,21 @@
 import styled from 'styled-components'
+import { useRouter } from 'next/dist/client/router';
 import { Link } from 'react-scroll';
-import {FaTimes, FaInstagram, FaLinkedin, FaMailBulk} from 'react-icons/fa'
+import {FaLinkedin, FaMailBulk} from 'react-icons/fa'
+import { AiFillInstagram } from 'react-icons/ai';
 
 
 const MobileDrawer = ({toggle, isOpen}) => {
-
+    const router = useRouter()
     return (
         <SidebarContainer isOpen={isOpen} onClick={toggle}>
         <div>
             <SidebarMenu>
-                <SidebarLink to="about" onClick={toggle}>Home</SidebarLink>
-                <SidebarLink to="about" onClick={toggle}>About</SidebarLink>
-                <SidebarLink to="webdev" onClick={toggle}>Services</SidebarLink>
-                <SidebarLink to="services" onClick={toggle}>Clients</SidebarLink>
-                <SidebarLink to="fotf" onClick={toggle}>Contact Us</SidebarLink>
+                <Link to="home" className="cursor-pointer text-2xl font-medium" smooth={true} duration={500} spy={true} exact='true' offset={-80}  onClick={toggle}>Home</Link>
+                <Link className="cursor-pointer text-2xl font-medium"   to="about" onClick={toggle} smooth={true} duration={500} spy={true} exact='true' offset={-80}>About</Link>
+                <Link className="cursor-pointer text-2xl font-medium"   to="services" onClick={toggle} smooth={true} duration={500} spy={true} exact='true' offset={-80}>Services</Link>
+                <Link className="cursor-pointer text-2xl font-medium"   to="clients" onClick={toggle} smooth={true} duration={500} spy={true} exact='true' offset={-80}>Clients</Link>
+                <a className="cursor-pointer text-2xl font-medium"  onClick={() => router.push('/contact')}>Contact</a>
             </SidebarMenu>
 
             <SocialMenu>
@@ -21,7 +23,7 @@ const MobileDrawer = ({toggle, isOpen}) => {
                 " >Reach out to us on social media</h5>
                 <div className="flex space-x-5 mt-3">
                     <a href="https://www.instagram.com/jxostech/" target="#">
-                    <FaInstagram className="text-2xl" />
+                    <AiFillInstagram className="text-2xl" />
                     </a>
                     <a href="https://www.linkedin.com/company/jxos" target="#">
                     <FaLinkedin className="text-2xl" />
@@ -39,9 +41,7 @@ const MobileDrawer = ({toggle, isOpen}) => {
 
 export default MobileDrawer
 
-export const CloseIcon = styled(FaTimes)`
-    color: #000;
-`
+
 
 const SidebarContainer = styled.aside`
     position: fixed;
@@ -79,19 +79,4 @@ grid-template-rows: repeat(1,80px);
 }
 `;
 
-const SidebarLink = styled(Link)`
-display:flex;
-align-items: center;
-font-weight: 600;
-font-size: 1.5rem;
-text-decoration: none;
-list-style: none;
-transition: 0.2s ease-in-out;
-text-decoration: none;
-color: black;
-cursor: pointer;
-&:hover{
-    color: #01bf71;
-    transition: 0.2s ease-in-out;
-}
-`
+
