@@ -1,6 +1,6 @@
 import Client1 from '../img/drmoons.jpg'
 import Client2 from '../img/drsheeba.jpg'
-import Client3 from '../img/Cnc.jpg'
+import Client3 from '../img/CnC.jpg'
 import Client4 from '../img/aditidhawan.jpg'
 import Client5 from '../img/BBP.jpg'
 
