@@ -1,6 +1,5 @@
 import Head from "next/head";
 import Image from "next/image";
-import Router from "next/dist/next-server/server/router";
 import Logo from '../assets/img/JXOS.jpg'
 import { useRouter } from "next/dist/client/router";
 
