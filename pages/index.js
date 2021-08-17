@@ -55,7 +55,7 @@ export default function Home({}) {
 
 
       <section  className="pt-10 noSelect" id="clients" >
-          <h2 className = "text-4xl font-semibold py-8">Live Anywhere</h2>
+          <h2 className = "text-4xl font-semibold py-8">Our Clients</h2>
           <div className= "flex space-x-3 overflow-scroll scrollbar-hide p-3 -ml-3 " >
             {clientData?.map((item,index) => (
               <MediumCard key={index} img={item.img} />
