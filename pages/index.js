@@ -6,7 +6,7 @@ import Header from '../components/Header'
 import LargeCard from '../components/LargeCard';
 import MediumCard from '../components/MediumCard';
 import ServiceCard from '../components/ServiceCard';
-import large from '../assets/img/large1.webp'
+import large from '../assets/img/large.webp'
 import MobileDrawer from '../components/MobileDrawer';
 import { serviceData } from '../assets/data/service';
 import { clientData } from '../assets/data/client'
@@ -58,7 +58,7 @@ export default function Home({}) {
           <h2 className = "text-4xl font-semibold py-8">Our Clients</h2>
           <div className= "flex space-x-3 overflow-scroll scrollbar-hide p-3 -ml-3 " >
             {clientData?.map((item,index) => (
-              <MediumCard key={index} img={item.img} />
+              <MediumCard key={index} img={item.img} title={item.title}/>
             ))}
           </div>
       </section>
