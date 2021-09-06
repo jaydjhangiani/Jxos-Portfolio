@@ -8,7 +8,7 @@ import { AiFillInstagram } from 'react-icons/ai';
 const MobileDrawer = ({toggle, isOpen}) => {
     const router = useRouter()
     return (
-        <SidebarContainer isOpen={isOpen} onClick={toggle}>
+        <SidebarContainer isOpen={isOpen} onClick={toggle} className="md:hidden">
         <div>
             <SidebarMenu>
                 <Link to="home" className="cursor-pointer text-2xl font-medium" smooth={true} duration={500} spy={true} exact='true' offset={-80}  onClick={toggle}>Home</Link>
