@@ -1,9 +1,9 @@
 import Head from "next/head";
 import Image from "next/image";
-import { useEffect, useState } from "react";
-import styled from 'styled-components'
+import { useEffect, useState, useCallback } from "react";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
+import emailjs from "emailjs-com";
 import { toast } from "react-toastify";
 import { Container, Grid, makeStyles } from "@material-ui/core";
 import { useRouter } from "next/dist/client/router";
@@ -60,14 +60,90 @@ const useStyles = makeStyles((theme) => ({
     message: Yup.string(),
   });
 
+    const useMediaQuery = () => {
+        const [targetReached, setTargetReached] = useState(false);
+  
+    const updateTarget = useCallback((e) => {
+      if (e.matches) {
+        setTargetReached(true);
+      } else {
+        setTargetReached(false);
+      }
+    }, []);
+  
+    useEffect(() => {
+        const media = window.matchMedia(`(max-width: 768px)`)
+        media.addEventListener('change', e => updateTarget(e))
+    
+        // Check on mount (callback is not called until a change occurs)
+        if (media.matches) {
+          setTargetReached(true)
+        }
+    
+        return () => media.removeEventListener('change', e => updateTarget(e))
+      }, []) 
+    return targetReached;
+  };
+
+
+
 const contact = () => {
     const classes = useStyles();
     const router = useRouter()
-
+    const bp = useMediaQuery()
+    
     const contactHandler = (values) => {
         console.log(values);
+        const config = {
+            header: {
+              "Content-Type": "application/json",
+            },
+          };
+      
+          const contactData = {
+            firstName: values.firstName,
+            lastName: values.lastName,
+            email: values.email,
+            phoneNumber: `+${values.countryCode}${values.phone}`,
+            occupation: values.occupation,
+            companyName: values.company,
+            purpose: values.purpose,
+            message: values.message,
+          };
+
+          try{
+            const emailData = {
+                from_name: `${values.firstName} ${values.lastName}`,
+                phoneNumber: `+${values.countryCode}${values.phone}`,
+                occupation: values.occupation,
+                purpose: values.purpose,
+                message: values.message,
+              };
+        
+              console.log(emailData);
+              emailjs
+                .send(
+                  process.env.NEXT_PUBLIC_SERVICE_ID,
+                  process.env.NEXT_PUBLIC_TEMPLATE_ID,
+                  emailData,
+                  process.env.NEXT_PUBLIC_USER_ID
+                )
+                .then(
+                  (result) => {
+                    console.log(result.text);
+                  },
+                  (error) => {
+                    console.log(error.text);
+                  }
+                );
+                toast.success("Thanks for getting in touch!");
+          }catch(error){
+            console.log(error);
+            toast.error(error.response.data.error);
+            
+          }
     }
-    
+
     return (
         <div>
             <Head>
@@ -101,11 +177,12 @@ const contact = () => {
                                         validationSchema={FORM_VALIDATION}
                                         onSubmit={contactHandler}
                                     >
+                                      
                                         <Form>
                                         <Grid container spacing={2}>
                                             <Grid
                                             item
-                                            xs={6}
+                                            xs={bp ? 12 : 6}
                                             >
                                             <Textfield
                                                 name="firstName"
@@ -115,7 +192,7 @@ const contact = () => {
                                             </Grid>
                                             <Grid
                                             item
-                                            xs={ 6}
+                                            xs={bp ? 12 : 6}
                                             >
                                             <Textfield
                                                 name="lastName"
@@ -132,7 +209,7 @@ const contact = () => {
                                             </Grid>
                                             <Grid
                                             item
-                                            xs={5}
+                                            xs={bp ? 12 : 6}
                                             >
                                             <Select
                                                 name="countryCode"
@@ -143,7 +220,7 @@ const contact = () => {
                                             </Grid>
                                             <Grid
                                             item
-                                            xs={7}
+                                            xs={bp ? 12 : 6}
                                             >
                                             <Textfield
                                                 name="phone"
@@ -153,7 +230,7 @@ const contact = () => {
                                             </Grid>
                                             <Grid
                                             item
-                                            xs={6}
+                                            xs={bp ? 12 : 6}
                                             >
                                             <Select
                                                 name="occupation"
@@ -164,7 +241,7 @@ const contact = () => {
                                             </Grid>
                                             <Grid
                                             item
-                                            xs={6}
+                                            xs={bp ? 12 : 6}
                                             >
                                             <Textfield name="company" label="Company Name" />
                                             </Grid>
