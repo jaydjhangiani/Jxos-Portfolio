@@ -4,6 +4,7 @@ import { useEffect, useState, useCallback } from "react";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import emailjs from "emailjs-com";
+import firebase from 'firebase';
 import { toast } from "react-toastify";
 import { Container, Grid, makeStyles } from "@material-ui/core";
 import { useRouter } from "next/dist/client/router";
@@ -16,6 +17,7 @@ import purposeData from "../assets/data/purposeData.json";
 import countryCode from "../assets/data/countryCode.json";
 import occupationData from "../assets/data/occupationData.json";
 import Logo from '../assets/img/JXOS.jpg'
+import { db } from '../firebase'
 import "react-toastify/dist/ReactToastify.css";
 toast.configure();
 
@@ -91,14 +93,10 @@ const contact = () => {
     const classes = useStyles();
     const router = useRouter()
     const bp = useMediaQuery()
-    
-    const contactHandler = (values) => {
+
+    const contactHandler = async (values) => {
         console.log(values);
-        const config = {
-            header: {
-              "Content-Type": "application/json",
-            },
-          };
+
       
           const contactData = {
             firstName: values.firstName,
@@ -112,6 +110,32 @@ const contact = () => {
           };
 
           try{
+
+            // db.collection('contacts').add({
+            // firstName: values.firstName,
+            // lastName: values.lastName,
+            // email: values.email,
+            // phoneNumber: `+${values.countryCode}${values.phone}`,
+            // occupation: values.occupation,
+            // companyName: values.company,
+            // purpose: values.purpose,
+            // message: values.message,
+            //     timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+                
+            // })
+
+            try{
+                const data = await fetch(`http://localhost:3000/api/contact`, {
+			    body:  JSON.stringify({ contactData }),
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                method: 'POST'
+		    })
+		        const res = await data.json()
+		        console.log(res)
+            
+
             const emailData = {
                 from_name: `${values.firstName} ${values.lastName}`,
                 phoneNumber: `+${values.countryCode}${values.phone}`,
@@ -136,6 +160,14 @@ const contact = () => {
                     console.log(error.text);
                   }
                 );
+            }
+            catch(error){
+                console.log(error)
+                toast.error(error.response.data.error);
+                
+
+            }
+            
                 toast.success("Thanks for getting in touch!");
           }catch(error){
             console.log(error);
