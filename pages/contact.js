@@ -111,18 +111,18 @@ const contact = () => {
 
           try{
 
-            // db.collection('contacts').add({
-            // firstName: values.firstName,
-            // lastName: values.lastName,
-            // email: values.email,
-            // phoneNumber: `+${values.countryCode}${values.phone}`,
-            // occupation: values.occupation,
-            // companyName: values.company,
-            // purpose: values.purpose,
-            // message: values.message,
-            //     timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+            db.collection('contacts').add({
+            firstName: values.firstName,
+            lastName: values.lastName,
+            email: values.email,
+            phoneNumber: `+${values.countryCode}${values.phone}`,
+            occupation: values.occupation,
+            companyName: values.company,
+            purpose: values.purpose,
+            message: values.message,
+                timestamp: firebase.firestore.FieldValue.serverTimestamp(),
                 
-            // })
+            })
 
             try{
                 const data = await fetch(`http://localhost:3000/api/contact`, {
